@@ -1,5 +1,8 @@
 import adapter from '@sveltejs/adapter-static';
 
+const dev = process.argv.includes('dev');
+const base = dev ? '' : (process.env.BASE_PATH ?? '');
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
@@ -7,7 +10,7 @@ const config = {
 			fallback: 'index.html'
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/glyph'
+			base
 		}
 	}
 };
